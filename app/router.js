@@ -1,9 +1,9 @@
-import { AboutController } from "./controllers/AboutController.js";
 import { CarsController } from "./controllers/CarsController.js";
-import { HomeController } from "./controllers/HomeController.js";
-import { ValuesController } from "./controllers/ValuesController.js";
-import { AboutView } from "./views/AboutView.js";
+import { HousingController } from "./controllers/HousingController.js";
+import { JobsController } from "./controllers/JobsController.js";
 import { CarsView } from "./views/CarsView.js";
+import { HousingView } from "./views/HousingView.js";
+import { JobsView } from "./views/JobsView.js";
 
 /**
  * Register your routes for the application here
@@ -12,20 +12,25 @@ import { CarsView } from "./views/CarsView.js";
 export const router = [
   {
     path: '',
-    controller: HomeController,
-    view: /*html*/`
-    <h1>Welcome to Gregslist</h1>
+    controller: null,
+    view: `
+      <img src="https://user-images.githubusercontent.com/102513373/208785565-ae846909-1be5-48ff-b37c-e6c091b36dc4.png" alt="Gregslist Logo" id="homePage" >
     `
-  },
-  {
-    path: '#/about',
-    controller: [AboutController, ValuesController],
-    view: AboutView
   },
   {
     path: '#/cars',
     controller: CarsController,
     view: CarsView
+  },
+  {
+    path: '#/houses',
+    controller: HousingController,
+    view: HousingView
+  },
+  {
+    path: '#/jobs',
+    controller: JobsController,
+    view: JobsView
   },
 ]
 
