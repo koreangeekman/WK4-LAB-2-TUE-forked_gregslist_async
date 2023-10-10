@@ -27,7 +27,7 @@ export const HousingView = `
 
         <!-- SECTION NEW HOME FORM -->
         <div class="col-12 col-md-8 p-3">
-          <form class="p-3 p-md-4 formCard" onsubmit="app.HomesController.addHouse(event)">
+          <form class="p-3 p-md-4 formCard" onsubmit="app.HousingController.addHouse(event)">
             <p class="fs-3 fw-bold">New House Form</p>
             <span class="">
               <label for="year">Year:</label>
@@ -44,7 +44,7 @@ export const HousingView = `
             </span>
             <span class="">
               <label for="levels">Levels:</label>
-              <input class="form-control" type="number" name="levels" id="levels" max="99999" placeholder="1600" required>
+              <input class="form-control" type="number" name="levels" id="levels" max="500" placeholder="2" required>
             </span>
             <span class="">
               <label for="price">Price:</label>

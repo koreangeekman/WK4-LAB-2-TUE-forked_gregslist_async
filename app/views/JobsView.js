@@ -33,11 +33,11 @@ export const JobsView = `
             </span>
             <span class="">
               <label for="company">Company:</label>
-              <input class="form-control" type="text" name="company" id="company" max-length="30" placeholder="HQ/Remote/Etc" required>
+              <input class="form-control" type="text" name="company" id="company" max-length="30" placeholder="Company" required>
             </span>
             <span class="">
               <label for="hours">Hours:</label>
-              <span class="d-flex align-items-center ps-2">$
+              <span class="d-flex align-items-center ps-2">
                 <input class="form-control" type="number" name="hours" id="hours" min="0" max="80"
                   placeholder="40" required>
               </span>

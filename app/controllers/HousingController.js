@@ -12,14 +12,16 @@ function _drawHomes() {
 
 export class HousingController {
   constructor() {
-    console.log('Housing Controller Loaded', AppState.houses)
+    housingService.getHouseData();
+
     _drawHomes();
     AppState.on('houses', _drawHomes)
+    AppState.on('account', _drawHomes)
   }
 
-  addHouse(event) { // form submission
+  async addHouse(event) { // form submission
     event.preventDefault();
-    housingService.addHouse(getFormData(event.target));
+    await housingService.addHouse(getFormData(event.target));
     event.target.reset();
     // _drawHomes();
   }

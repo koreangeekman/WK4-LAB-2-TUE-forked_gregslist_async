@@ -12,14 +12,15 @@ function _drawJobs() {
 
 export class JobsController {
   constructor() {
-    console.log('Jobs Controller loaded', AppState.jobs);
+    jobsService.getJobs();
     _drawJobs();
     AppState.on('jobs', _drawJobs)
+    AppState.on('account', _drawJobs)
   }
 
-  addJob(event) { //from form submission
+  async addJob(event) { //from form submission
     event.preventDefault();
-    jobsService.addJob(getFormData(event.target));
+    await jobsService.addJob(getFormData(event.target));
     event.target.reset();
   }
 

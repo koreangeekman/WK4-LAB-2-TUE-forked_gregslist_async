@@ -1,3 +1,4 @@
+import { AppState } from "../AppState.js"
 import { generateId } from "../utils/GenerateId.js"
 
 export class Job {
@@ -39,23 +40,36 @@ export class Job {
   get jobCard() {
     return `
       <div div class="col-12 col-md-4 p-2">
-        <div class="card shadow p-3">
-          <img src="${this.imgUrl}" alt="job image">
-            <div class="d-flex justify-content-between align-items-center overlay p-2">
-              <p class="fs-5 fw-bold price">$${this.rate}</p>
-              <i class="fs-1 remove btn mdi mdi-trash-can" onclick="app.JobsController.removeJob('${this.id}')"></i>
-            </div>
-            <div>
-              <p><b>Company</b>: ${this.company}</p>
-              <p><b>Job Title</b>: ${this.jobTitle}</p>
-              <p><b>Hours</b>: ${this.hours}</p>
-              <p><b>Rate</b>: ${this.rate}</p>
-            </div>
-            <p><b>Description</b>: ${this.description}</p>
-            <p class="text-secondary w-100 text-end"><small>Listed At: ${this.createdAt}</small></p>
-            <p class="text-secondary w-100 text-end"><small>Updated At: ${this.updatedAt}</small></p>
+        <div class="card shadow p-3 pt-0">
+          <div class="d-flex justify-content-between align-items-center overlay pt-3">
+            <p class="fs-5 fw-bold price">$${this.rate}</p>
+            ${this.accountCheck}
+          </div>
+          <div class="mt-5 pt-4">
+            <p><b>Company</b>: ${this.company}</p>
+            <p><b>Job Title</b>: ${this.jobTitle}</p>
+            <p><b>Hours</b>: ${this.hours}</p>
+            <p><b>Rate</b>: ${this.rate}</p>
+          </div>
+          <p><b>Description</b>: ${this.description}</p>
+          <p class="text-secondary w-100 text-end"><small>Listed At: ${this.createdAt}</small></p>
+          <p class="text-secondary w-100 text-end"><small>Updated At: ${this.updatedAt}</small></p>
+          <hr>
+          <span class="d-block">
+            <p class="">OP: ${this.creator.name}</p>
+            <img class="creatorIMG" src="${this.creator.picture}">
+          </span>
         </div>
       </div >
     `
+  }
+
+  get accountCheck() {
+    if (AppState.account?.id == this.creatorId) {
+      return `
+      <i class="fs-1 remove btn mdi mdi-trash-can" onclick="app.JobsController.removeJob('${this.id}')"></i>
+      `
+    }
+    return ''
   }
 }

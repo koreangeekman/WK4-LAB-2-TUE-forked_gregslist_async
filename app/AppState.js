@@ -25,6 +25,7 @@ class ObservableAppState extends EventEmitter {
 
   /** @type {Job[]} */
   jobs = []
+
   // Used to load initial data
   init() {
     // this.cars = loadState('cars', [Car])

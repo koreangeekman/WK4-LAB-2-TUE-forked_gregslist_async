@@ -1,3 +1,4 @@
+import { AppState } from "../AppState.js"
 import { generateId } from "../utils/GenerateId.js"
 
 export class House {
@@ -45,7 +46,7 @@ export class House {
             <img src="${this.imgUrl}" alt="house image">
               <div class="d-flex justify-content-between align-items-center overlay p-2">
                 <p class="fs-5 fw-bold price">$${this.price}</p>
-                <i class="fs-1 remove btn mdi mdi-trash-can" onclick="app.HomesController.removeHouse('${this.id}')"></i>
+                ${this.accountMatch}
               </div>
             <div class="d-flex justify-content-evenly">
               <div>
@@ -58,10 +59,24 @@ export class House {
               </div>
             </div>
             <p><b>Description</b>: ${this.description}</p>
-            <p class="text-secondary w-100 text-end"><small>Created At: ${this.createdAt}</small></p>
-            <p class="text-secondary w-100 text-end"><small>Updated At: ${this.updatedAt}</small></p>
+            <p class="text-secondary w-100 text-end mb-0"><small>Created At: ${this.createdAt}</small></p>
+            <p class="text-secondary w-100 text-end mb-0"><small>Updated At: ${this.updatedAt}</small></p>
+            <hr>
+            <span class="d-block">
+              <p class="">OP: ${this.creator.name}</p>
+              <img class="creatorIMG" src="${this.creator.picture}">
+            </span>
           </div>
         </div>
     `
+  }
+
+  get accountMatch() {
+    if (AppState.account?.id == this.creatorId) {
+      return `
+        <i class="fs-1 remove btn mdi mdi-trash-can" onclick="app.HousingController.removeHouse('${this.id}')"></i>
+      `
+    }
+    return ''
   }
 }
