@@ -4,14 +4,39 @@ export class House {
   constructor(data) {
     this.id = data.id || generateId()
     this.year = data.year
+    this.levels = data.levels
     this.bedrooms = data.bedrooms
     this.bathrooms = data.bathrooms
-    this.sqft = data.sqft
     this.price = data.price
     this.description = data.description
     this.imgUrl = data.imgUrl
-    this.listedAt = data.listedAt ? new Date(data.listedAt).toLocaleString() : new Date().toLocaleString()
+    this.createdAt = data.createdAt ? new Date(data.createdAt).toLocaleString() : new Date().toLocaleString()
+    this.updatedAt = data.updatedAt ? new Date(data.updatedAt).toLocaleString() : new Date().toLocaleString()
+    this.creatorId = data.creatorId
+    this.creator = data.creator
   }
+
+  //   {
+  //     "_id": "645d60f381faf24223ae886b",
+  //     "bedrooms": 3,
+  //     "bathrooms": 2,
+  //     "levels": 2,
+  //     "imgUrl": "https://floorcentral.com/wp-content/uploads/2014/07/sick-house-syndrome.jpg",
+  //     "year": 2003,
+  //     "price": 230000,
+  //     "description": "Super sick house",
+  //     "creatorId": "63f7d6202d1cf882287f12e2",
+  //     "createdAt": "2023-05-11T21:41:07.979Z",
+  //     "updatedAt": "2023-05-11T21:41:07.979Z",
+  //     "__v": 0,
+  //     "creator": {
+  //         "_id": "63f7d6202d1cf882287f12e2",
+  //         "name": "Charles Francis Xavier",
+  //         "picture": "https://www.looper.com/img/gallery/professor-xs-entire-backstory-explained/intro-1587748942.jpg",
+  //         "id": "63f7d6202d1cf882287f12e2"
+  //         },
+  //     "id": "645d60f381faf24223ae886b"
+  // },
 
   get houseCard() {
     return `
@@ -25,7 +50,7 @@ export class House {
             <div class="d-flex justify-content-evenly">
               <div>
                 <p><b>Year</b>: ${this.year}</p>
-                <p><b>Sqft</b>: ${this.sqft}</p>
+                <p><b>Floors</b>: ${this.levels}</p>
               </div>
               <div>
                 <p><b>Bedrooms</b>: ${this.bedrooms}</p>
@@ -33,7 +58,8 @@ export class House {
               </div>
             </div>
             <p><b>Description</b>: ${this.description}</p>
-            <p class="text-secondary w-100 text-end"><small>Listed At: ${this.listedAt}</small></p>
+            <p class="text-secondary w-100 text-end"><small>Created At: ${this.createdAt}</small></p>
+            <p class="text-secondary w-100 text-end"><small>Updated At: ${this.updatedAt}</small></p>
           </div>
         </div>
     `
