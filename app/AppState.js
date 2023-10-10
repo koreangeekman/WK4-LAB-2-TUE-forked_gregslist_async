@@ -1,4 +1,6 @@
 import { Car } from './models/Car.js'
+import { House } from "./models/House.js"
+import { Job } from "./models/Job.js"
 import { EventEmitter } from './utils/EventEmitter.js'
 import { isValidProp } from './utils/IsValidProp.js'
 import { loadState } from './utils/Store.js'
@@ -9,17 +11,25 @@ class ObservableAppState extends EventEmitter {
   /** @type {import('./models/Account.js').Account | null} */
   // @ts-ignore
   account = null
+
   // /** @type {import('./models/Value.js').Value[]} */
   // values = loadState('values', [Value])
-  socketData = []
 
+  socketData = []
 
   /** @type {Car[]} */
   cars = []
 
+  /** @type {House[]} */
+  houses = []
+
+  /** @type {Job[]} */
+  jobs = []
   // Used to load initial data
   init() {
-
+    // this.cars = loadState('cars', [Car])
+    // this.houses = loadState('houses', [House])
+    // this.jobs = loadState('jobs', [Job])
   }
 }
 
