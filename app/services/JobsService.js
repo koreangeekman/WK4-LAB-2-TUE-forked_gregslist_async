@@ -17,7 +17,7 @@ class JobsService {
   async addJob(newJob) {
     const res = await api.post('api/jobs', newJob)
     AppState.jobs.push(new Job(res.data));
-    _saveJobs();
+    // _saveJobs();
     AppState.emit('jobs');
   }
 
@@ -28,7 +28,7 @@ class JobsService {
       throw new Error('Job ID does not exist');
     }
     AppState.jobs.splice(jobIndex, 1);
-    _saveJobs();
+    // _saveJobs();
     AppState.emit('jobs');
   }
 

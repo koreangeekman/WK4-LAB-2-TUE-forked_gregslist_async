@@ -1,4 +1,5 @@
 import { AppState } from "../AppState.js";
+import { Job } from "../models/Job.js";
 import { jobsService } from "../services/JobsService.js";
 import { getFormData } from "../utils/FormHandler.js";
 import { Pop } from "../utils/Pop.js";
@@ -10,12 +11,22 @@ function _drawJobs() {
   setHTML('jobCards', contentHTML);
 }
 
+function _drawJobsForm() {
+  if (!AppState.account) {
+    return
+  }
+  setHTML('jobsForm', Job.jobFormTemplate);
+}
+
 export class JobsController {
   constructor() {
     jobsService.getJobs();
+
     _drawJobs();
-    AppState.on('jobs', _drawJobs)
-    AppState.on('account', _drawJobs)
+    _drawJobsForm();
+    AppState.on('jobs', _drawJobs);
+    AppState.on('account', _drawJobs);
+    AppState.on('account', _drawJobsForm);
   }
 
   async addJob(event) { //from form submission

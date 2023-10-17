@@ -1,4 +1,5 @@
 import { AppState } from "../AppState.js";
+import { House } from "../models/House.js";
 import { housingService } from "../services/HousingService.js";
 import { getFormData } from "../utils/FormHandler.js";
 import { Pop } from "../utils/Pop.js";
@@ -10,20 +11,28 @@ function _drawHomes() {
   setHTML('houseCards', contentHTML);
 }
 
+function _drawHousesForm() {
+  if (!AppState.account) {
+    return
+  }
+  setHTML('housesForm', House.housesFormTemplate)
+}
+
 export class HousingController {
   constructor() {
     housingService.getHouseData();
 
     _drawHomes();
-    AppState.on('houses', _drawHomes)
-    AppState.on('account', _drawHomes)
+    _drawHousesForm();
+    AppState.on('houses', _drawHomes);
+    AppState.on('account', _drawHomes);
+    AppState.on('account', _drawHousesForm);
   }
 
   async addHouse(event) { // form submission
     event.preventDefault();
     await housingService.addHouse(getFormData(event.target));
     event.target.reset();
-    // _drawHomes();
   }
 
   async removeHouse(id) {
@@ -31,6 +40,5 @@ export class HousingController {
       return
     }
     housingService.removeHouse(id);
-    // _drawHomes();
   }
 }
